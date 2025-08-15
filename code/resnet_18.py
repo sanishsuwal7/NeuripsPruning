@@ -125,7 +125,6 @@ class ResNet_features(nn.Module):
         self.inplanes = 64
 
         # Initial convolutional layer
-        # self.conv1 = nn.Conv2d(1, 64, kernel_size=3, stride=1, padding=1, bias=False)
         self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3, bias=False)
         # Batch normalization
         self.bn1 = nn.BatchNorm2d(64)
@@ -133,9 +132,7 @@ class ResNet_features(nn.Module):
         self.relu = nn.ReLU(inplace=True)
         # Max pooling
         self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
-        # self.maxpool = nn.Identity()
         # Global average pooling
-        # self.global_pool = nn.AdaptiveAvgPool2d((1, 1))
         self.global_pool = nn.AvgPool2d(kernel_size=7)
 
 
@@ -249,7 +246,9 @@ class ResNet_features(nn.Module):
     
 
 def resnet_18(pretrained=False, **kwargs):
-    """Constructs a ResNet-18 model.
+    """
+    Constructs a ResNet-18 model.
+    
     Args:
         pretrained: If True, returns a model pre-trained
     """
